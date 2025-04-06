@@ -70,7 +70,7 @@ export default function Home() {
                   href="/auth/signup"
                   className="text-blue-500 hover:underline ml-2 font-semibold"
                 >
-                  Sign Up
+                  Contact Us
                 </a>
               </p>
             </div>

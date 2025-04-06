@@ -7,13 +7,9 @@ interface MainWrapperProps {
 
 const MainWrapper: React.FC<MainWrapperProps> = ({
   children,
-  className = "flex-1 flex flex-col items-center justify-center w-full",
+  className = "flex flex-col min-h-screen w-screen",
 }) => {
-  return (
-    <main className={className}>
-      <div className="flex flex-col">{children}</div>
-    </main>
-  );
+  return <main className={className}>{children}</main>;
 };
 
 export default MainWrapper;
