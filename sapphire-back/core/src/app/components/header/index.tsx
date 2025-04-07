@@ -37,7 +37,7 @@ const Header = () => {
         <div className="flex flex-row justify-between items-center my-1 w-[80%]">
           {/* Logo */}
           <span className="font-light text-center text-sm md:text-base lg:text-lg 2xl:text-xl text-gray-800 px-4 py-2 uppercase">
-            <Link href={PAGES.dashboard}>Logo</Link>
+            <Link href={PAGES.dashboard}>Sapphire</Link>
           </span>
           {/* Navigations */}
           <nav className="hidden sm:flex flex-row justify-between items-center gap-2 ">

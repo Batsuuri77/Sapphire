@@ -22,7 +22,8 @@ const Sidebar: React.FC<SidebarProps> = ({
     <nav className={navClassName}>
       <ul className="flex flex-col gap-4">
         {links.map((link, index) => {
-          const isActive = pathname === link.href;
+          //const isActive = pathname === link.href;
+          const isActive = pathname.startsWith(link.href);
 
           return (
             <li key={link.href}>

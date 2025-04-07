@@ -1,6 +1,7 @@
 import { EyeIcon, EyeSlashIcon } from "@heroicons/react/24/solid";
 import Footer from "./components/footer";
 import MainWrapper from "./components/mian/MainWrapper";
+import DefaultButton from "./components/buttons/DefaultButton";
 
 export default function Home() {
   return (
@@ -60,9 +61,7 @@ export default function Home() {
                     Forgot your password?
                   </a>
                 </div>
-                <button className="bg-blue-500 text-white text-sm font-semibold px-4 py-2 rounded-lg shadow-md hover:bg-blue-600 transition duration-300 w-full">
-                  Log In
-                </button>
+                <DefaultButton title={"Log "} />
               </form>
               <p className="text-sm text-gray-700 font-semibold">
                 Don&apos;t have an account?

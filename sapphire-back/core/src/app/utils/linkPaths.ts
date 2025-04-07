@@ -10,3 +10,10 @@ export const PAGES = {
   faq: "/pages/faq",
   home: "/",
 };
+
+export const MERCHANTS = {
+  merchants: "/pages/merchants",
+  addMerchant: "/pages/merchants/addMerchant",
+  editMerchant: "/pages/merchants/editMerchant",
+  deleteMerchant: "/pages/merchants/deleteMerchant",
+};

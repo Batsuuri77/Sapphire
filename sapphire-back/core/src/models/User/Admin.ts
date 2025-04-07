@@ -3,9 +3,14 @@ export enum AdminRole {
   MERCHANT = "merchant",
 }
 
-export interface Admin {
+export interface AdminLogin {
   id: string;
-  name: string;
+  firstName: string;
+  lastName: string;
+  userName: string;
+  phoneNumber: number;
+  mobileNumber?: number;
+  address: string;
   email: string;
   password: string;
   role: AdminRole;
