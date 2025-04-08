@@ -1,3 +1,5 @@
+import { AdminLogin } from "./Admin";
+
 export interface MerchantProfile {
   id: string;
   adminId: string;
@@ -10,4 +12,5 @@ export interface MerchantProfile {
   mobileNumber?: string;
   createdAt: Date;
   updatedAt: Date;
+  adminLogin: AdminLogin;
 }

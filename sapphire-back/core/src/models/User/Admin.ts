@@ -5,12 +5,12 @@ export enum AdminRole {
 
 export interface AdminLogin {
   id: string;
+  profilePic: string;
   firstName: string;
   lastName: string;
   userName: string;
-  phoneNumber: number;
   mobileNumber?: number;
-  address: string;
+  address?: string;
   email: string;
   password: string;
   role: AdminRole;

@@ -2,7 +2,7 @@ import React from "react";
 
 interface FormInputProps {
   label: string; // Label for the input field
-  placeholder: string; // Placeholder text for the input field
+  placeholder?: string; // Placeholder text for the input field
   type?: string; // Type of the input field (e.g., text, email, password)
   name: string; // Name attribute for the input field
   value: string; // Value of the input field
