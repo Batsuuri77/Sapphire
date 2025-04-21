@@ -3,11 +3,11 @@
 import LinkButton from "@/app/components/buttons/LinkButton";
 import Footer from "@/app/components/footer";
 import Header from "@/app/components/header";
-import MainWrapper from "@/app/components/mian/MainWrapper";
+import MainWrapper from "@/app/components/main/MainWrapper";
 import Sidebar from "@/app/components/Sidebar";
 import useSyncMerchantWithUrl from "@/app/hooks/useSyncMerchantWithUrl"; // Hook to sync merchant with URL
 import { useMerchantStore } from "@/app/stores/useMerchantStore";
-import { MERCHANTS, PAGES } from "@/app/utils/linkPaths";
+import { MERCHANTS, PAGES } from "@/utils/linkPaths";
 import {
   ArrowsRightLeftIcon,
   BuildingStorefrontIcon,

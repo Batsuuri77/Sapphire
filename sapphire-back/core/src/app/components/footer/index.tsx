@@ -1,6 +1,6 @@
 import React from "react";
 import Image from "next/image";
-import { SOCIAL_IMAGE_PATHS } from "@/app/utils/imagePaths";
+import { SOCIAL_IMAGE_PATHS } from "@/utils/imagePaths";
 
 const Footer = () => {
   const socials =
@@ -11,7 +11,7 @@ const Footer = () => {
       <div className="flex flex-col justify-between w-full">
         <div className="flex flex-row justify-between items-center gap-2 px-4 py-2 border-t  border-gray-300 ">
           <div className="flex justify-start items-center px-4 xl:py-3 2xl:py-4 ">
-            <p className="text-xs sm:text-base xl:text-lg 2xl:text-xl text-left text-gray-600">
+            <p className="text-xs sm:text-base xl:text-lg 2xl:text-xl text-left ">
               © Batsuuri Battsooj 2025
             </p>
           </div>

@@ -1,6 +1,6 @@
 import { EyeIcon, EyeSlashIcon } from "@heroicons/react/24/solid";
 import Footer from "./components/footer";
-import MainWrapper from "./components/mian/MainWrapper";
+import MainWrapper from "./components/main/MainWrapper";
 import DefaultButton from "./components/buttons/DefaultButton";
 
 export default function Home() {
@@ -16,7 +16,7 @@ export default function Home() {
                 <span className="text-blue-600 font-bold">KIZUN</span> system
                 1.0
               </h1>
-              <p className="text-sm text-gray-700 font-semibold text-center px-1">
+              <p className="text-sm font-semibold text-center px-1">
                 This platform is designed to empower SMB business owners by
                 providing a centralized solution to efficiently manage their
                 online stores.
@@ -24,13 +24,13 @@ export default function Home() {
             </div>
             {/* Login section */}
             <div className="flex flex-col gap-5 justify-between items-center mb-10">
-              <h2 className="text-left font-semibold text-lg text-gray-800">
+              <h2 className="text-left font-semibold text-lg">
                 Log in to your account
               </h2>
 
               <form action="">
                 <div className="flex flex-col gap-1 justify-between mb-4">
-                  <label htmlFor="" className="text-sm font-bold text-gray-700">
+                  <label htmlFor="" className="text-sm font-bold ">
                     Email address
                   </label>
                   <input
@@ -41,7 +41,7 @@ export default function Home() {
                   />
                 </div>
                 <div className="flex flex-col  gap-2 justify-between mb-4">
-                  <label htmlFor="" className="text-sm font-bold text-gray-700">
+                  <label htmlFor="" className="text-sm font-bold ">
                     Password
                   </label>
                   <div className="relative flex items-center">
@@ -51,8 +51,8 @@ export default function Home() {
                       className="text-sm rounded-md py-1 px-2 shadow-2xl border-2 border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
                       placeholder=""
                     />
-                    <EyeIcon className="w-6 h-6 absolute right-2 top-1/2 transform -translate-y-1/2 text-gray-500 bg-gray-200 rounded-2xl p-1" />
-                    <EyeSlashIcon className="w-6 h-6 absolute right-2 top-1/2 transform -translate-y-1/2 text-gray-500 bg-gray-200 rounded-2xl p-1" />
+                    <EyeIcon className="w-6 h-6 absolute right-2 top-1/2 transform -translate-y-1/2  rounded-2xl p-1" />
+                    <EyeSlashIcon className="w-6 h-6 absolute right-2 top-1/2 transform -translate-y-1/2 rounded-2xl p-1" />
                   </div>
                   <a
                     href="/auth/forgot-password"
@@ -61,9 +61,9 @@ export default function Home() {
                     Forgot your password?
                   </a>
                 </div>
-                <DefaultButton title={"Log "} />
+                <DefaultButton title={"Log in"} />
               </form>
-              <p className="text-sm text-gray-700 font-semibold">
+              <p className="text-sm  font-semibold">
                 Don&apos;t have an account?
                 <a
                   href="/auth/signup"

@@ -2,14 +2,20 @@
 
 import DefaultButton from "@/app/components/buttons/DefaultButton";
 import Footer from "@/app/components/footer";
-import FormInput from "@/app/components/form/inputs/FormInput";
-import ImageInput from "@/app/components/form/inputs/ImageInput";
+import AdminForm from "@/app/components/form/AdminForm";
+import CompanyForm from "@/app/components/form/CompanyForm";
+import MerchantForm from "@/app/components/form/MerchantForm";
 import Header from "@/app/components/header";
-import MainWrapper from "@/app/components/mian/MainWrapper";
+import MainWrapper from "@/app/components/main/MainWrapper";
 import Sidebar from "@/app/components/Sidebar";
 import useSyncMerchantWithUrl from "@/app/hooks/useSyncMerchantWithUrl"; // Hook to sync merchant with URL
 import { useMerchantStore } from "@/app/stores/useMerchantStore";
-import { PAGES } from "@/app/utils/linkPaths";
+import {
+  AdminFormData,
+  CompanyFormData,
+  MerchFormData,
+} from "@/types/formInputs";
+import { PAGES } from "@/utils/linkPaths";
 import {
   ArrowsRightLeftIcon,
   BuildingStorefrontIcon,
@@ -21,7 +27,45 @@ import React, { useState } from "react";
 
 export default function Dashboard() {
   const { merchantId } = useMerchantStore();
-  const [email, setEmail] = useState("");
+  const [step, setStep] = useState<0 | 1 | 2>(0); // 0: Company, 1: Merchant, 2: Admin
+  const [merchantData, setMerchantData] = useState({
+    logoImage: [],
+    merchantName: "",
+    merchantDomain: "",
+    merchantType: "",
+    merchantBio: "",
+    merchantAddress: "",
+    merchantPhoneNumber: "",
+    merchantDescription: "",
+    createdAt: new Date(),
+    updatedAt: new Date(),
+  });
+  const [companyData, setCompanyData] = useState({
+    name: "",
+    email: "",
+    taxId: "",
+    phoneNumber: "",
+    mobileNumber: "",
+    country: "",
+    state: "",
+    city: "",
+    strAddress: "",
+    zipCode: "",
+    createdAt: new Date(),
+    updatedAt: new Date(),
+  });
+
+  const [adminData, setAdminData] = useState({
+    firstName: "",
+    lastName: "",
+    email: "",
+    userName: "",
+    phoneNumber: "",
+    password: "",
+    createdAt: new Date(),
+    updatedAt: new Date(),
+  });
+
   // Sync Zustand state with URL and vice versa
   useSyncMerchantWithUrl();
 
@@ -43,9 +87,26 @@ export default function Dashboard() {
     { name: "Settings", atr: <Cog8ToothIcon /> },
   ];
 
-  const handleInputChange = (e: { target: { value: unknown } }) => {
-    setEmail(e.target.value as string);
-    console.log(e.target.value);
+  const handleNext = () => {
+    if (step < 2) {
+      const nextStep = (step + 1) as 0 | 1 | 2;
+      setStep(nextStep);
+      window.history.pushState({ step: nextStep }, "step", `#step-${nextStep}`);
+    }
+  };
+
+  const handleBack = () => {
+    if (step > 0) setStep((prev) => (prev - 1) as 0 | 1 | 2);
+  };
+
+  const handleSubmitAll = () => {
+    const finalData = {
+      company: companyData,
+      merchant: merchantData,
+      admin: adminData,
+    };
+
+    console.log("Submitting full data:", finalData);
   };
 
   return (
@@ -65,139 +126,51 @@ export default function Dashboard() {
               Add a new merchant
             </h2>
           )}
-          <div className="flex flex-row gap-20 justify-between items-center">
-            <div className="flex flex-col gap-4 max-w-full justify-center items-start">
-              <h3 className="text-lg font-semibold text-gray-800 mb-4">
-                Merchant details
-              </h3>
-              <ImageInput label={"Merchant logo"} url={""} images={[]} />
-              <form className="gap-4 max-w-full grid grid-cols-2">
-                <FormInput
-                  label={"Company name"}
-                  type="text"
-                  name={"MerchantName"}
-                  value={email}
-                  onChange={handleInputChange}
+          <div className="flex flex-col gap-6">
+            {step === 0 && (
+              <>
+                <CompanyForm
+                  companyformLabel={"Company details"}
+                  companyformdata={companyData}
+                  setCompanyFormData={
+                    setCompanyData as (data: CompanyFormData) => void
+                  }
                 />
-                <FormInput
-                  label={"Email"}
-                  placeholder={""}
-                  type="email"
-                  name={"MerchantEmail"}
-                  value={email}
-                  onChange={handleInputChange}
+                <DefaultButton title="Next" onClick={handleNext} />
+              </>
+            )}
+
+            {step === 1 && (
+              <>
+                <MerchantForm
+                  merchformLabel="Merchant details"
+                  merchformdata={merchantData}
+                  setMerchFormData={
+                    setMerchantData as (data: MerchFormData) => void
+                  }
                 />
-                <FormInput
-                  label={"Domain"}
-                  type="url"
-                  name={"MerchantEmail"}
-                  value={email}
-                  onChange={handleInputChange}
-                />
-                <div className="flex flex-col gap-1">
-                  <label
-                    htmlFor={"MerchantDescription"}
-                    className="text-sm font-bold text-gray-700 "
-                  >
-                    Description
-                  </label>
-                  <textarea
-                    className="text-sm rounded-md py-1 px-2 shadow-2xl border-2 border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent w-full h-30"
-                    name={"MerchantDescription"}
-                    value={email}
-                    onChange={handleInputChange}
-                  />
+                <div className="flex flex-row justify-between items-center">
+                  <DefaultButton title="Back" onClick={handleBack} />
+                  <DefaultButton title="Next" onClick={handleNext} />
                 </div>
-                <FormInput
-                  label={"Address"}
-                  type="text"
-                  name={"MerchantAddress"}
-                  value={email}
-                  onChange={handleInputChange}
+              </>
+            )}
+
+            {step === 2 && (
+              <>
+                <AdminForm
+                  adminformLabel="Admin details"
+                  adminformdata={adminData}
+                  setAdminFormData={
+                    setAdminData as (data: AdminFormData) => void
+                  }
                 />
-                <FormInput
-                  label={"PhoneNumber"}
-                  type="number"
-                  name={"MerchantPhoneNumber"}
-                  value={email}
-                  onChange={handleInputChange}
-                />
-                <FormInput
-                  label={"MobileNumber"}
-                  type="number"
-                  name={"MerchantMobileNumber"}
-                  value={email}
-                  onChange={handleInputChange}
-                />
-                <DefaultButton title={"Submit"} />
-              </form>
-            </div>
-            <div className="flex flex-col gap-4 max-w-full justify-center items-start">
-              <h3 className="text-lg font-semibold text-gray-800 mb-4">
-                Merchant&apos;s admin details
-              </h3>
-              <ImageInput label={"Merchant logo"} url={""} images={[]} />
-              <form className="gap-4 max-w-full grid grid-cols-2">
-                <FormInput
-                  label={"Company name"}
-                  type="text"
-                  name={"MerchantName"}
-                  value={email}
-                  onChange={handleInputChange}
-                />
-                <FormInput
-                  label={"Email"}
-                  placeholder={""}
-                  type="email"
-                  name={"MerchantEmail"}
-                  value={email}
-                  onChange={handleInputChange}
-                />
-                <FormInput
-                  label={"Domain"}
-                  type="url"
-                  name={"MerchantEmail"}
-                  value={email}
-                  onChange={handleInputChange}
-                />
-                <div className="flex flex-col gap-1">
-                  <label
-                    htmlFor={"MerchantDescription"}
-                    className="text-sm font-bold text-gray-700 "
-                  >
-                    Description
-                  </label>
-                  <textarea
-                    className="text-sm rounded-md py-1 px-2 shadow-2xl border-2 border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent w-full h-30"
-                    name={"MerchantDescription"}
-                    value={email}
-                    onChange={handleInputChange}
-                  />
+                <div className="flex flex-row justify-between items-center">
+                  <DefaultButton title="Back" onClick={handleBack} />
+                  <DefaultButton title="Submit" onClick={handleSubmitAll} />
                 </div>
-                <FormInput
-                  label={"Address"}
-                  type="text"
-                  name={"MerchantAddress"}
-                  value={email}
-                  onChange={handleInputChange}
-                />
-                <FormInput
-                  label={"PhoneNumber"}
-                  type="number"
-                  name={"MerchantPhoneNumber"}
-                  value={email}
-                  onChange={handleInputChange}
-                />
-                <FormInput
-                  label={"MobileNumber"}
-                  type="number"
-                  name={"MerchantMobileNumber"}
-                  value={email}
-                  onChange={handleInputChange}
-                />
-                <DefaultButton title={"Submit"} />
-              </form>
-            </div>
+              </>
+            )}
           </div>
         </main>
       </div>

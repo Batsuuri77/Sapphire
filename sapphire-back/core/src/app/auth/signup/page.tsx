@@ -1,6 +1,6 @@
 import { EyeIcon, EyeSlashIcon } from "@heroicons/react/24/solid";
 import Footer from "@/app/components/footer";
-import MainWrapper from "@/app/components/mian/MainWrapper";
+import MainWrapper from "@/app/components/main/MainWrapper";
 
 export default function Home() {
   return (

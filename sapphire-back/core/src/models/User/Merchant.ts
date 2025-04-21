@@ -1,6 +1,6 @@
 import { AdminLogin } from "./Admin";
 
-export interface MerchantProfile {
+export interface Merchant {
   id: string;
   adminId: string;
   companyName: string;

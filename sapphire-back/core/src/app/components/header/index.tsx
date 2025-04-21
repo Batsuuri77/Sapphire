@@ -3,7 +3,8 @@ import Link from "next/link";
 import React from "react";
 import Navbar from "../Navbar";
 import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/solid";
-import { PAGES } from "@/app/utils/linkPaths";
+import { PAGES } from "@/utils/linkPaths";
+import ThemeToggle from "../main/ThemeToggle";
 // import { SunIcon } from "@heroicons/react/24/outline";
 
 const Header = () => {
@@ -33,10 +34,10 @@ const Header = () => {
   };
   return (
     <>
-      <header className="fixed top-0 left-0 w-screen flex justify-center  items-centerc py-2 bg-white drop-shadow-md z-50">
+      <header className="fixed top-0 left-0 w-screen flex justify-center items-centerc py-2  drop-shadow-md z-50 bg-white">
         <div className="flex flex-row justify-between items-center my-1 w-[80%]">
           {/* Logo */}
-          <span className="font-light text-center text-sm md:text-base lg:text-lg 2xl:text-xl text-gray-800 px-4 py-2 uppercase">
+          <span className="font-light text-center text-sm md:text-base lg:text-lg 2xl:text-xl px-4 py-2 uppercase">
             <Link href={PAGES.dashboard}>Sapphire</Link>
           </span>
           {/* Navigations */}
@@ -60,6 +61,7 @@ const Header = () => {
               </div>
             </div>*/}
           </nav>
+          {/* <ThemeToggle /> */}
           {/* Hamburger menu */}
           <div className="flex grow items-center justify-end sm:hidden">
             <button onClick={openMenu} className="focus:outline-none">
@@ -71,13 +73,13 @@ const Header = () => {
             </button>
           </div>
           {isMenuOpen && (
-            <div className="absolute top-14 left-0 w-full bg-white shadow-md sm:hidden">
-              <nav className="flex flex-col items-end py-4 px-8 text-sm font-medium text-gray-800 hover:text-blue-700">
+            <div className="absolute top-14 left-0 w-full shadow-md sm:hidden">
+              <nav className="flex flex-col items-end py-4 px-8 text-sm font-medium  hover:text-blue-700">
                 {navLinks.map((link) => (
                   <Link
                     key={link.href}
                     href={link.href}
-                    className="py-2 text-sm text-gray-800 hover:text-blue-600"
+                    className="py-2 text-sm hover:text-blue-600"
                     onClick={() => setIsMenuOpen(false)} // Close menu on link click
                   >
                     {link.name}

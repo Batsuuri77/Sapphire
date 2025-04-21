@@ -5,19 +5,13 @@ import { useState } from "react";
 import axios from "axios";
 import { ArrowUpTrayIcon } from "@heroicons/react/24/solid";
 import Image from "next/image"; // Adjusted the import statement for Image component
+import { ImageInputField } from "@/types/formInputs"; // Adjusted the import statement for ImageInputField type
 
-interface ImageInputProps {
-  label: string; // Label for the input field
-  url: string; // URL for the input field
-  images: string[]; // Array of image URLs
-  text?: string; // Optional text for the input field
-  additionalLabelClassName?: string; // Optional additional class names for the label
-}
-
-const ImageInput: React.FC<ImageInputProps> = ({
+const ImageInput: React.FC<ImageInputField> = ({
   images: existingImages,
-  text = "Upload a logo",
+  label = "",
   additionalLabelClassName = "",
+  alt = "",
 }) => {
   const [images, setImages] = useState(existingImages || []);
   const [isUploading, setIsUploading] = useState(false);
@@ -59,7 +53,11 @@ const ImageInput: React.FC<ImageInputProps> = ({
         {!!images?.length &&
           images.map((url) => (
             <div key={url} className="w-30 h-30 p-4">
-              <Image src={url} alt="" className="rounded-full object-cover" />
+              <Image
+                src={url}
+                alt={alt}
+                className="rounded-full object-cover"
+              />
             </div>
           ))}
       </ReactSortable>
@@ -72,7 +70,7 @@ const ImageInput: React.FC<ImageInputProps> = ({
         className={`w-30 h-30 flex flex-col items-center justify-center border border-gray-200 shadow-sm  cursor-pointer rounded-full overflow-hidden font-semibold  text-center text-sm text-gray-500 gap-2${additionalLabelClassName}`}
       >
         <ArrowUpTrayIcon className="w-5 h-5" />
-        {text}
+        {label}
         <input type="file" onChange={uploadImages} className="hidden"></input>
       </label>
       {/* {!images?.length && (
