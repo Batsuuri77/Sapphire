@@ -37,7 +37,7 @@ const MerchantForm: React.FC<MerchantFormProps> = ({
           label={"Shop name"}
           required={true}
           type="text"
-          name={"MerchantName"}
+          name={"merchantName"}
           value={merchformdata.merchantName}
           onChange={handleChange}
         />
@@ -45,7 +45,7 @@ const MerchantForm: React.FC<MerchantFormProps> = ({
           label={"Shop domain"}
           required={true}
           type="url"
-          name={"MerchantDomain"}
+          name={"merchantDomain"}
           value={merchformdata.merchantDomain}
           onChange={handleChange}
         />
@@ -63,7 +63,7 @@ const MerchantForm: React.FC<MerchantFormProps> = ({
         ></Selector>
         <TextAreaInput
           label={"Shop bio"}
-          name={"MerchantBio"}
+          name={"merchantBio"}
           required={false}
           value={merchformdata.merchantBio}
           onChange={(e) => {
@@ -74,7 +74,7 @@ const MerchantForm: React.FC<MerchantFormProps> = ({
           label={"Shop address"}
           required={true}
           type="text"
-          name={"MerchantAddress"}
+          name={"merchantAddress"}
           value={merchformdata.merchantAddress}
           onChange={handleChange}
         />
@@ -82,14 +82,14 @@ const MerchantForm: React.FC<MerchantFormProps> = ({
           label={"Shop phone number"}
           required={true}
           type="number"
-          name={"MerchantPhoneNumber"}
+          name={"merchantPhoneNumber"}
           value={merchformdata.merchantPhoneNumber}
           onChange={handleChange}
         />
         <TextAreaInput
           label={"Shop description"}
           required={false}
-          name={"MerchantDescription"}
+          name={"merchantDescription"}
           value={merchformdata.merchantDescription || ""}
           onChange={(e) => {
             handleChange(e);

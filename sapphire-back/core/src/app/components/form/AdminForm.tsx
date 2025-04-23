@@ -30,7 +30,7 @@ const AdminForm: React.FC<AdminFormProps> = ({
         <FormInput
           label={"First name"}
           type="text"
-          name={"AdminFirstName"}
+          name={"firstName"}
           value={adminformdata.firstName}
           required={true}
           onChange={handleChange}
@@ -39,7 +39,7 @@ const AdminForm: React.FC<AdminFormProps> = ({
           label={"Last name"}
           placeholder={""}
           type="text"
-          name={"AdminLastName"}
+          name={"lastName"}
           value={adminformdata.lastName}
           required={true}
           onChange={handleChange}
@@ -47,7 +47,7 @@ const AdminForm: React.FC<AdminFormProps> = ({
         <FormInput
           label={"Email"}
           type="email"
-          name={"AdminEmail"}
+          name={"email"}
           value={adminformdata.email}
           required={true}
           onChange={handleChange}
@@ -55,7 +55,7 @@ const AdminForm: React.FC<AdminFormProps> = ({
         <FormInput
           label={"PhoneNumber"}
           type="number"
-          name={"MerchantPhoneNumber"}
+          name={"phoneNumber"}
           required={true}
           value={adminformdata.phoneNumber}
           onChange={handleChange}
@@ -63,7 +63,7 @@ const AdminForm: React.FC<AdminFormProps> = ({
         <FormInput
           label={"MobileNumber"}
           type="number"
-          name={"MerchantMobileNumber"}
+          name={"mobileNumber"}
           required={false}
           value={adminformdata.mobileNumber || ""}
           onChange={handleChange}

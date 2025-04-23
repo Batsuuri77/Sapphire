@@ -10,9 +10,7 @@ const CompanyForm: React.FC<CompanyFormProps> = ({
   companyformdata,
   setCompanyFormData,
 }) => {
-  const handleChange = (
-    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
-  ) => {
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
     setCompanyFormData({ ...companyformdata, [name]: value });
   };
@@ -30,7 +28,7 @@ const CompanyForm: React.FC<CompanyFormProps> = ({
         <FormInput
           label={"Company name"}
           type="text"
-          name={"CompanyName"}
+          name={"name"}
           value={companyformdata.name}
           onChange={handleChange}
           required={true}
@@ -38,7 +36,7 @@ const CompanyForm: React.FC<CompanyFormProps> = ({
         <FormInput
           label={"Email"}
           type="email"
-          name={"CompanyEmail"}
+          name={"email"}
           value={companyformdata.email}
           onChange={handleChange}
           required={true}
@@ -46,7 +44,7 @@ const CompanyForm: React.FC<CompanyFormProps> = ({
         <FormInput
           label={"Tax ID"}
           type="text"
-          name={"CompanyTaxID"}
+          name={"taxId"}
           value={companyformdata.taxId}
           onChange={handleChange}
           required={true}
@@ -54,7 +52,7 @@ const CompanyForm: React.FC<CompanyFormProps> = ({
         <FormInput
           label={"Phone number"}
           type="number"
-          name={"CompanyPhoneNumber"}
+          name={"phoneNumber"}
           value={companyformdata.phoneNumber}
           onChange={handleChange}
           required={true}
@@ -62,7 +60,7 @@ const CompanyForm: React.FC<CompanyFormProps> = ({
         <FormInput
           label={"Mobile number"}
           type="number"
-          name={"CompanyMobileNumber"}
+          name={"mobileNumber"}
           value={companyformdata.mobileNumber || ""}
           onChange={handleChange}
           required={true}
@@ -71,7 +69,7 @@ const CompanyForm: React.FC<CompanyFormProps> = ({
         <FormInput
           label={"State or Province"}
           type="text"
-          name={"CompanyState"}
+          name={"state"}
           value={companyformdata.state}
           onChange={handleChange}
           required={true}
@@ -79,7 +77,7 @@ const CompanyForm: React.FC<CompanyFormProps> = ({
         <FormInput
           label={"City"}
           type="text"
-          name={"CompanyCity"}
+          name={"city"}
           value={companyformdata.city}
           onChange={handleChange}
           required={true}
@@ -87,7 +85,7 @@ const CompanyForm: React.FC<CompanyFormProps> = ({
         <FormInput
           label={"Street address"}
           type="text"
-          name={"CompanyStreetAddress"}
+          name={"strAddress"}
           value={companyformdata.strAddress}
           onChange={handleChange}
           required={true}
@@ -95,7 +93,7 @@ const CompanyForm: React.FC<CompanyFormProps> = ({
         <FormInput
           label={"Zip code"}
           type="number"
-          name={"CompanyZipCode"}
+          name={"zipCode"}
           value={companyformdata.zipCode}
           onChange={handleChange}
           required={true}
