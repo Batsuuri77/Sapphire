@@ -15,7 +15,7 @@ const AdminForm: React.FC<AdminFormProps> = ({
     const { name, value } = e.target;
     setAdminFormData({ ...adminformdata, [name]: value });
   };
-  console.log(adminformdata, "adminformdata");
+  //console.log(adminformdata, "adminformdata");
   return (
     <div
       className={`flex flex-col gap-4 max-w-full justify-center items-start ${adminformContainerClassName}`}

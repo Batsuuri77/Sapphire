@@ -88,6 +88,8 @@ export interface AdminFormData {
   firstName: string;
   lastName: string;
   email: string;
+  userName: string;
+  password: string;
   phoneNumber: string;
   mobileNumber?: string;
   createdAt: Date;

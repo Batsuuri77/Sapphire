@@ -95,6 +95,18 @@ export default function Dashboard() {
     }
   };
 
+  // React.useEffect(() => {
+  //   const handlePopState = (event: PopStateEvent) => {
+  //     const stepFromUrl = Number(window.location.hash.replace("#step-", ""));
+  //     if (!isNaN(stepFromUrl)) {
+  //       setStep(stepFromUrl as 0 | 1 | 2);
+  //     }
+  //   };
+
+  //   window.addEventListener("popstate", handlePopState);
+  //   return () => window.removeEventListener("popstate", handlePopState);
+  // }, []);
+
   const handleBack = () => {
     if (step > 0) setStep((prev) => (prev - 1) as 0 | 1 | 2);
   };
@@ -107,6 +119,16 @@ export default function Dashboard() {
     };
 
     console.log("Submitting full data:", finalData);
+  };
+
+  const handleSubmitCompany = () => {
+    console.log("Submitting company data:", companyData);
+  };
+  const handleSubmitMerchant = () => {
+    console.log("Submitting merchant data:", merchantData);
+  };
+  const handleSubmitAdmin = () => {
+    console.log("Submitting admin data:", adminData);
   };
 
   return (
@@ -137,6 +159,7 @@ export default function Dashboard() {
                   }
                 />
                 <DefaultButton title="Next" onClick={handleNext} />
+                <DefaultButton title="Back" onClick={handleSubmitCompany} />
               </>
             )}
 
@@ -151,6 +174,7 @@ export default function Dashboard() {
                 />
                 <div className="flex flex-row justify-between items-center">
                   <DefaultButton title="Back" onClick={handleBack} />
+                  <DefaultButton title="Back" onClick={handleSubmitMerchant} />
                   <DefaultButton title="Next" onClick={handleNext} />
                 </div>
               </>
@@ -167,6 +191,7 @@ export default function Dashboard() {
                 />
                 <div className="flex flex-row justify-between items-center">
                   <DefaultButton title="Back" onClick={handleBack} />
+                  <DefaultButton title="Back" onClick={handleSubmitAdmin} />
                   <DefaultButton title="Submit" onClick={handleSubmitAll} />
                 </div>
               </>

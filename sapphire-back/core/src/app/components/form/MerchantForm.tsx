@@ -18,7 +18,7 @@ const MerchantForm: React.FC<MerchantFormProps> = ({
     const { name, value } = e.target;
     setMerchFormData({ ...merchformdata, [name]: value });
   };
-  console.log(merchformdata, "merchformdata");
+  //console.log(merchformdata, "merchformdata");
 
   const [selected, setSelected] = React.useState<string>("");
 
