@@ -14,6 +14,8 @@ import { CountrySelectorProps } from "@/types/formInputs";
 const CountrySelector: React.FC<CountrySelectorProps> = ({
   label,
   labelClassname,
+  value,
+  onChange,
 }) => {
   const countries = useMemo(() => getCountryList(), []);
 
@@ -24,7 +26,10 @@ const CountrySelector: React.FC<CountrySelectorProps> = ({
       >
         {label}
       </label>
-      <Select>
+      <Select
+        value={value}
+        onValueChange={(selectedValue) => onChange(selectedValue)}
+      >
         <SelectTrigger className="w-full">
           <SelectValue placeholder="Select a country" />
         </SelectTrigger>
