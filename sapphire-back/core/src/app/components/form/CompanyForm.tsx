@@ -1,4 +1,4 @@
-import React, { useCallback, useState } from "react";
+import React, { useCallback } from "react";
 import FormInput from "./inputs/FormInput";
 import { CompanyFormProps } from "@/types/formInputs";
 import CountrySelector from "./inputs/CountrySelector";
@@ -16,13 +16,11 @@ const CompanyForm: React.FC<CompanyFormProps> = React.memo(
       (e: React.ChangeEvent<HTMLInputElement>) => {
         const { name, value } = e.target;
         setCompanyFormData({ ...companyformdata, [name]: value });
-        console.log(companyformdata, "companyformdata");
+        // console.log(companyformdata, "companyformdata");
       },
       [setCompanyFormData, companyformdata]
     );
     // console.log(companyformdata, "companyformdata");
-
-    const [selectedCountry, setSelectedCountry] = useState("");
 
     return (
       <div
@@ -76,8 +74,11 @@ const CompanyForm: React.FC<CompanyFormProps> = React.memo(
           />
           <CountrySelector
             label={"Country"}
-            value={selectedCountry}
-            onChange={(value: string) => setSelectedCountry(value)}
+            name={"country"}
+            value={companyformdata.country}
+            onChange={(value: string) =>
+              setCompanyFormData({ ...companyformdata, country: value })
+            }
           />
           <FormInput
             label={"State or Province"}

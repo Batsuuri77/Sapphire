@@ -1,23 +1,21 @@
+// src/app/api/company/route.ts
+
+import { NextResponse } from "next/server";
 import { connectToDatabase } from "@/lib/mongodb";
 import Company from "@/models/User/Company";
-import { NextResponse } from "next/server";
 
 export async function POST(req: Request) {
-  await connectToDatabase();
-  const data = await req.json();
   try {
-    const company = await Company.create(data);
-    return Response.json(company, { status: 201 });
+    await connectToDatabase();
+    const body = await req.json();
+
+    const company = await Company.create(body);
+    return NextResponse.json({ success: true, data: company }, { status: 201 });
   } catch (err) {
-    return Response.json(
-      { error: "Failed to create company", details: err },
-      { status: 400 }
+    console.error("API ERROR:", err);
+    return NextResponse.json(
+      { success: false, error: (err as Error).message },
+      { status: 500 }
     );
   }
-}
-
-export async function GET() {
-  await connectToDatabase();
-  const companies = await Company.find();
-  return NextResponse.json(companies);
 }

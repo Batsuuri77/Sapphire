@@ -121,9 +121,26 @@ export default function Dashboard() {
     console.log("Submitting full data:", finalData);
   };
 
-  const handleSubmitCompany = () => {
-    console.log("Submitting company data:", companyData);
+  const handleSubmitCompany = async () => {
+    try {
+      const res = await fetch("/api/company", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(companyData),
+      });
+
+      const data = await res.json(); // make sure the response is valid JSON
+
+      if (!res.ok) throw new Error(data.error || "Something went wrong");
+
+      console.log("Company created:", data);
+    } catch (error) {
+      console.error("Unexpected error:", error);
+    }
   };
+
   const handleSubmitMerchant = () => {
     console.log("Submitting merchant data:", merchantData);
   };

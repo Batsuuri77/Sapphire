@@ -27,7 +27,14 @@ export async function connectToDatabase(): Promise<typeof mongoose> {
   if (!cached.promise) {
     cached.promise = mongoose
       .connect(MONGODB_URI, {})
-      .then((mongoose) => mongoose);
+      .then((mongoose) => {
+        console.log("MongoDB connected");
+        return mongoose;
+      })
+      .catch((error) => {
+        console.error("MongoDB connection failed:", error);
+        throw error;
+      });
   }
 
   cached.conn = await cached.promise;

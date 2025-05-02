@@ -36,6 +36,7 @@ export interface TextAreaInputField {
 
 export interface CountrySelectorProps {
   labelClassname?: string;
+  name: string; // Name attribute for the country selector
   label: string;
   value: string; // Selected country code
   onChange: (value: string) => void; // Change event handler

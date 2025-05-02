@@ -13,6 +13,7 @@ import { CountrySelectorProps } from "@/types/formInputs";
 
 const CountrySelector: React.FC<CountrySelectorProps> = ({
   label,
+  name,
   labelClassname,
   value,
   onChange,
@@ -27,6 +28,7 @@ const CountrySelector: React.FC<CountrySelectorProps> = ({
         {label}
       </label>
       <Select
+        name={name}
         value={value}
         onValueChange={(selectedValue) => onChange(selectedValue)}
       >
