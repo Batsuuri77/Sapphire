@@ -31,7 +31,15 @@ const MerchantForm: React.FC<MerchantFormProps> = ({
       >
         {merchformLabel}
       </h3>
-      <ImageInput label={""} url={""} alt={""} images={[]} />
+      <ImageInput
+        label={""}
+        url={""}
+        alt={""}
+        images={[]}
+        onChange={(urls) =>
+          setMerchFormData({ ...merchformdata, logoImage: urls })
+        }
+      />
       <form className="grid grid-cols-2 gap-4 w-full">
         <FormInput
           label={"Shop name"}

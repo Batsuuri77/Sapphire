@@ -2,7 +2,6 @@ import React from "react";
 import { ReactSortable } from "react-sortablejs";
 import Spinner from "react-spinner"; // Adjusted the path to locate the Spinner component
 import { useState } from "react";
-import axios from "axios";
 import { ArrowUpTrayIcon } from "@heroicons/react/24/solid";
 import Image from "next/image"; // Adjusted the import statement for Image component
 import { ImageInputField } from "@/types/formInputs"; // Adjusted the import statement for ImageInputField type
@@ -12,30 +11,45 @@ const ImageInput: React.FC<ImageInputField> = ({
   label = "",
   additionalLabelClassName = "",
   alt = "",
+  onChange,
 }) => {
   const [images, setImages] = useState(existingImages || []);
   const [isUploading, setIsUploading] = useState(false);
 
   async function uploadImages(ev: React.ChangeEvent<HTMLInputElement>) {
     const files = ev.target?.files;
-    if (files && files.length > 0) {
-      setIsUploading(true);
-      const data = new FormData();
+    if (!files?.length) return;
 
-      for (const file of files) {
-        data.append("file", file);
-      }
+    setIsUploading(true);
+    const newImageUrls: string[] = [];
 
-      interface UploadResponse {
-        links: string[];
-      }
+    for (const file of files) {
+      // 1. Get presigned URL
+      const res = await fetch(
+        `/api/s3/upload-images?file=${encodeURIComponent(file.name)}&type=${
+          file.type
+        }`
+      );
+      const { url } = await res.json();
 
-      const res = await axios.post<UploadResponse>("/api/upload", data);
-      setImages((oldImages) => {
-        return [...oldImages, ...res.data.links];
+      // 2. Upload directly to S3
+      await fetch(url, {
+        method: "PUT",
+        body: file,
+        headers: {
+          "Content-Type": file.type,
+          "x-amz-acl": "public-read", // ✅ REQUIRED to match your signed URL
+        },
       });
-      setIsUploading(false);
+
+      // 3. Push public URL to list (strip query params)
+      const imageUrl = url.split("?")[0];
+      newImageUrls.push(imageUrl);
     }
+
+    setImages((prev) => [...prev, ...newImageUrls]);
+    onChange?.(newImageUrls); // Notify parent
+    setIsUploading(false);
   }
 
   function updateImagesOrder(newState: unknown[]) {
@@ -50,16 +64,32 @@ const ImageInput: React.FC<ImageInputField> = ({
         className="flex flex-wrap gap-1"
         setList={updateImagesOrder}
       >
-        {!!images?.length &&
+        {
+          /* {!!images?.length &&
           images.map((url) => (
             <div key={url} className="w-30 h-30 p-4">
               <Image
                 src={url}
                 alt={alt}
+                fill
                 className="rounded-full object-cover"
               />
             </div>
-          ))}
+          ))} */
+          images
+            .filter((url) => url) // ✅ filters out "", null, undefined
+            .map((url) => (
+              <div key={url} className="w-30 h-30 p-4">
+                <Image
+                  src={url}
+                  alt={alt || "Uploaded image"}
+                  width={120}
+                  height={120}
+                  className="rounded-full object-cover"
+                />
+              </div>
+            ))
+        }
       </ReactSortable>
       {isUploading && (
         <div className="h-30 flex items-center">

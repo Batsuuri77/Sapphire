@@ -12,12 +12,12 @@ export interface InputField {
 }
 
 export interface ImageInputField {
-  label: string; // Label for the input field
-  url: string; // URL for the input field
   images: string[]; // Array of image URLs
-  alt?: string; // Optional text for the input field
-  required?: boolean; // Optional flag to indicate if the field is required
+  label: string; // Label for the input field
   additionalLabelClassName?: string; // Optional additional class names for the label
+  alt?: string; // Optional text for the input field
+  url?: string; // URL for the input field
+  onChange: (newImageUrls: string[]) => void; // Change event handler
 }
 
 export interface TextAreaInputField {
